@@ -219,4 +219,75 @@
 	%\Javacode{resources/q2.java}
 %	\label{code:q2}
 %\end{listing}
+خروجی مورد انتظار این برنامه بیشترین و کمترین مقدار آرایه‌ی \code{nums} است. اما اگر ورودی را به نحوی ارائه دهیم که جایگاه بزرگترین داده قبل از جایگاه تمام کوچکترین داده‌ها در لیست باشد، آنگاه مقدار \code{largest} هیچ‌گاه برابر بزرگترین داده نخواهد بود.
+برای مثال لیستی مرتب به صورت نزولی با اعضای \code{\lr{[4, 3, 2, 1]}}
+را در نظر بگیرید، آنگاه خروجی کد به ازای این لیست برای متغیر \code{smallest} مقدار \code{1} و برای متغیر \code{largest} مقدار \code{-2147483648} خواهد بود.
+مقدار مورد انتظار برای \code{smallest} همان \code{1} اما برای \code{largest}، مقدار \code{4} است که توسط این تابع بدست نیامده است.
+
+خصوصیت‌های مبتنی بر واسط:
+\begin{enumerate}
+	\item \rl{علامت متغیر :smallest}
+	\begin{enumerate}
+	\item مثبت
+	\item منفی
+	\item صفر
+	\end{enumerate}
+	\item \rl{علامت متغیر :largest}
+	\begin{enumerate}
+	\item مثبت
+	\item منفی
+	\item صفر
+	\end{enumerate}
+	\item \rl{اندازه لیست :nums}
+	\begin{enumerate}
+	\item صفر
+	\item یک 
+	\item بیشتر از یک
+	\end{enumerate}
+	\item \rl{آیا لیست nums به ترتیب صعودی مرتب شده است؟}
+	\begin{enumerate}
+	\item بله
+	\item خیر 
+	\end{enumerate}
+		\item \rl{آیا لیست nums به ترتیب نزولی مرتب شده است؟}
+	\begin{enumerate}
+	\item بله
+	\item خیر 
+	\end{enumerate}
+    \item \rl{ آیا تمامی اعضای num از جنس  int (در بازه مجاز) هستند؟}
+    \begin{enumerate}
+    \item بله
+    \item خیر
+    \end{enumerate}
+    \item \rl{ آیا null است یا خیر؟}
+    \begin{enumerate}
+    \item بله
+    \item خیر
+    \end{enumerate}
+    \item \rl{آیا n نوع int است؟}
+    \begin{enumerate}
+    \item بله
+    \item خیر
+    \end{enumerate}
+    \item \rl{آیا در بازه ی مجاز int است یا خیر؟}
+    \begin{enumerate}
+    \item بله
+    \item خیر
+    \end{enumerate}
+\end{enumerate}
+
+خصوصیت مبتنی بر عملکرد:
+\begin{enumerate}
+	\item \rl{آیا بزرگترین عنصر قبل از تمام عنصرهای کوچکتر در لیست ظاهر شده است؟}
+    \begin{enumerate}
+    \item بله
+    \item خیر
+    \end{enumerate}
+	\item \rl{آیا کوچکترین عنصر قبل از تمام عنصرهای بزرگتر در لیست ظاهر شده است؟}
+	    \begin{enumerate}
+    \item بله
+    \item خیر
+    \end{enumerate}
+\end{enumerate}
+
 \end{document}

@@ -6,7 +6,7 @@ public class NumFinder {
 		for (int n : nums) {
 			if (n < smallest)
 				smallest = n;
-			else if (n > largest)
+			|\colorbox{green}{if}| (n > largest)
 				largest = n;
 		}
 	}

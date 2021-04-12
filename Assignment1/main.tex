@@ -15,11 +15,11 @@
 \usepackage{dirtree}
 \usepackage{textpos}
 \usepackage{marginnote}
-\usepackage[newfloat]{minted}
+%\usepackage[newfloat]{minted}
 \usepackage{caption}
 \usepackage{xepersian}
 
-\SetupFloatingEnvironment{listing}{name={کد}}
+%\SetupFloatingEnvironment{listing}{name={کد}}
 \setlength{\footnotemargin}{2mm}
 \setlist{itemsep=1pt}
 
@@ -78,32 +78,32 @@
 \definecolor{pred}{rgb}{0.9,0,0}
 \definecolor{pgrey}{rgb}{0.46,0.45,0.48}
 \definecolor{customblue}{RGB}{235,241,245}
-
-\newmintedfile[Javacode]{java}{
-	fontfamily=tt,
-	fontsize=\footnotesize,
-	bgcolor=customblue,
-	formatcom=\setLTR,
-	linenos=true,
-	numberblanklines=true,
-	numbersep=5pt,
-	escapeinside=||,
-	gobble=0,
-	%frame=leftline,
-	frame=single,
-	framerule=0.4pt,
-	framesep=3mm,
-	funcnamehighlighting=true,
-	tabsize=3,
-	obeytabs=false,
-	mathescape=false,
-	samepage=false, %with this setting you can force the list to appear on the same page
-	showspaces=false,
-	showtabs =false,
-	texcl=false,
-	breaklines=true,
-	baselinestretch=1.1
-}
+%
+%\newmintedfile[Javacode]{java}{
+%	fontfamily=tt,
+%	fontsize=\footnotesize,
+%	bgcolor=customblue,
+%	formatcom=\setLTR,
+%	linenos=true,
+%	numberblanklines=true,
+%	numbersep=5pt,
+%	escapeinside=||,
+%	gobble=0,
+%	%frame=leftline,
+%	frame=single,
+%	framerule=0.4pt,
+%	framesep=3mm,
+%	funcnamehighlighting=true,
+%	tabsize=3,
+%	obeytabs=false,
+%	mathescape=false,
+%	samepage=false, %with this setting you can force the list to appear on the same page
+%	showspaces=false,
+%	showtabs =false,
+%	texcl=false,
+%	breaklines=true,
+%	baselinestretch=1.1
+%}
 
 \begin{document}
 	\begin{textblock*}{\textwidth}(0pt,-1.5cm)
@@ -144,11 +144,11 @@
 \begin{answer}
 خروجی مورد انتظار این تابع برای ورودی \code{II} مقدار \code{2} خواهد بود؛ اما پس از اجرای تابع با ورودی مذکور، مقدار \code{0} نتیجه می‌شود. این مشکل از آنجا سرچشمه می‌گیرد که افزودن عدد جدید به اعداد قبلی \textbf{تنها} در صورتی انجام می‌شود که شرط \code{next > currentNumber} برقرار باشد، با این حال نیاز است تا برابری این دو متغیر نیز برای افزودن عدد لحاظ شود. با تغییر در خط ۲۳ و اضافه کردن حالت برابری دو متغیر، مشکل حل خواهد شد. نسخه اصلاح‌شده برنامه در \autoref{code:convert} موجود است.
 \end{answer}
-\begin{listing}[h]
-\caption{نسخه اصلاح‌شده برنامه تبدیل اعداد رومی به دهدهی}
-\Javacode{resources/prg.java}
-\label{code:convert}
-\end{listing}
+%\begin{listing}[h]
+%\caption{نسخه اصلاح‌شده برنامه تبدیل اعداد رومی به دهدهی}
+%\Javacode{resources/prg.java}
+%\label{code:convert}
+%\end{listing}
 % ====================================================
 \begin{qitem}{b}
 در صورت امکان مورد آزمونی ارائه دهید که خطا را اجرا نکند.
@@ -202,9 +202,9 @@
 \begin{question}{2}
 برنامه موجود در \autoref{code:q2} کوچکترین و بزرگترین عنصر آرایه‌ای از اعداد صحیح را پیدا می‌کند. پیاده‌سازی این برنامه اشتباه است. با استفاده از روش افراز فضای ورودی، موارد آزمونی را طراحی کنید که خطای برنامه را مشخص کند. رویکرد شما باید حداقل دو خصوصیت مبتنی بر عملکرد و یک خصوصیت مبتنی بر واسط داشته باشد.
 \end{question}
-\begin{listing}[h]
-	\caption{برنامه یافتن بزرگترین و کوچکترین اعداد آرایه}
-	\Javacode{resources/q2.java}
-	\label{code:q2}
-\end{listing}
+%\begin{listing}[h]
+%	\caption{برنامه یافتن بزرگترین و کوچکترین اعداد آرایه}
+	%\Javacode{resources/q2.java}
+%	\label{code:q2}
+%\end{listing}
 \end{document}

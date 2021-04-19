@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k+kd}{public} \PYG{k+kd}{class} \PYG{n+nc}{RomanNumeral} \PYG{p}{\PYGZob{}}
+	\PYG{k+kd}{private} \PYG{k+kd}{static} \PYG{n}{Map}\PYG{o}{\PYGZlt{}}\PYG{n}{Character}\PYG{p}{,} \PYG{n}{Integer}\PYG{o}{\PYGZgt{}} \PYG{n}{map}\PYG{p}{;}
+	\PYG{k+kd}{static} \PYG{p}{\PYGZob{}}
+		\PYG{n}{map} \PYG{o}{=} \PYG{k}{new} \PYG{n}{HashMap}\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+		\PYG{n}{map}\PYG{p}{.}\PYG{n+na}{put}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}I\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+		\PYG{n}{map}\PYG{p}{.}\PYG{n+na}{put}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}V\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{;}
+		\PYG{n}{map}\PYG{p}{.}\PYG{n+na}{put}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}X\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{;}
+		\PYG{n}{map}\PYG{p}{.}\PYG{n+na}{put}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}L\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{50}\PYG{p}{)}\PYG{p}{;}
+		\PYG{n}{map}\PYG{p}{.}\PYG{n+na}{put}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}C\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{100}\PYG{p}{)}\PYG{p}{;}
+		\PYG{n}{map}\PYG{p}{.}\PYG{n+na}{put}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}D\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{500}\PYG{p}{)}\PYG{p}{;}
+		\PYG{n}{map}\PYG{p}{.}\PYG{n+na}{put}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}M\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{1000}\PYG{p}{)}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{k+kd}{public} \PYG{k+kt}{int} \PYG{n+nf}{convert}\PYG{p}{(}\PYG{n}{String} \PYG{n}{s}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{convertedNumber} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{s}\PYG{p}{.}\PYG{n+na}{length}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;} \PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{k+kt}{int} \PYG{n}{currentNumber} \PYG{o}{=} \PYG{n}{map}\PYG{p}{.}\PYG{n+na}{get}\PYG{p}{(}\PYG{n}{s}\PYG{p}{.}\PYG{n+na}{charAt}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+			\PYG{k+kt}{int} \PYG{n}{next} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}} \PYG{n}{s}\PYG{p}{.}\PYG{n+na}{length}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+				\PYG{n}{next} \PYG{o}{=} \PYG{n}{map}\PYG{p}{.}\PYG{n+na}{get}\PYG{p}{(}\PYG{n}{s}\PYG{p}{.}\PYG{n+na}{charAt}\PYG{p}{(}\PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+			\PYG{p}{\PYGZcb{}}
+
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{currentNumber} \PYG{esc}{\colorbox{green}{>=}} \PYG{n}{next}\PYG{p}{)}
+				\PYG{n}{convertedNumber} \PYG{o}{+}\PYG{o}{=} \PYG{n}{currentNumber}\PYG{p}{;}
+			\PYG{k}{else}
+				\PYG{n}{convertedNumber} \PYG{o}{\PYGZhy{}}\PYG{o}{=} \PYG{n}{currentNumber}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{return} \PYG{n}{convertedNumber}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

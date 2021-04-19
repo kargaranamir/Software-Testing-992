@@ -1,11 +1,12 @@
-\documentclass{article}
-\usepackage[a4paper, total={6.5in, 10in},top=2cm]{geometry}
+\documentclass[twoside]{article}
+\usepackage[a4paper,total={6.5in, 10in},right=2cm,left=2cm,top=1.5cm,bottom=1.5cm,headheight=17pt, includehead,includefoot,]{geometry}
 \usepackage[bottom,hang]{footmisc}
+\usepackage{tasks}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{graphicx}
 \usepackage[plain]{algorithm}
-\usepackage{enumitem}
+\usepackage[inline]{enumitem}
 \usepackage{algpseudocode}
 \usepackage{ragged2e}
 \usepackage[usenames,dvipsnames]{color}
@@ -14,17 +15,43 @@
 \usepackage{hyperref}
 \usepackage{dirtree}
 \usepackage{textpos}
-\usepackage{marginnote}
-%\usepackage[newfloat]{minted}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[newfloat]{minted}
 \usepackage{caption}
 \usepackage{xepersian}
 
-%\SetupFloatingEnvironment{listing}{name={کد}}
+\newcommand{\Institute}{دانشکده مهندسی کامپیوتر}
+\newcommand{\Title}{تمرین اول}
+\newcommand{\DueDate}{۱۴۰۰/۰۱/۱۴}
+\newcommand{\Class}{آزمون نرم‌افزار}
+\newcommand{\Semester}{۲-۹۹}
+\newcommand{\Instructor}{دکتر حسن میریان}
+\newcommand{\ClassCode}{40828}
+
+
+\fancyhf{}
+\fancyhead[RE,LO]{\textbf{\Title}}
+\fancyhead[LE,RO]{\rule[-1.4ex]{0pt}{2ex} \textbf{\Class\ {\small (\ClassCode)}}}
+\fancyfoot[L]{صفحه \textbf{\thepage} از \textbf{\pageref*{LastPage}}}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{%
+	\fancyhf{} % clear all header and footer fields
+	%\rule[1ex]{0pt}{2ex}
+	\fancyfoot[L]{صفحه \textbf{\thepage} از \textbf{\pageref*{LastPage}}}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+}
+
+\pagestyle{fancy}
+
+\SetupFloatingEnvironment{listing}{name={کد}}
 \setlength{\footnotemargin}{2mm}
 \setlist{itemsep=1pt}
 
 \graphicspath{{./images/}}
-\DeclareGraphicsExtensions{.pdf,.jpeg,.jpg}
+\DeclareGraphicsExtensions{.pdf,.jpeg,.jpg,.png}
 
 \delimitershortfall=-1pt
 \hypersetup{
@@ -34,10 +61,11 @@
 	urlcolor=blue,
 }
 
-\settextfont[Scale=1.1]{XB Kayhan}
-\setlatintextfont[Scale=1.1]{Times New Roman}
+\settextfont[Scale=1.1]{HM XKayhan}
+\setlatintextfont[Scale=1.1]{Linux Libertine}
 \DefaultMathsDigits
 \setlength{\skip\footins}{1.2pc plus 5pt}
+\setlength{\parskip}{.6em}
 
 %\setlist[enumerate,1]{label={(\arabic*)}}
 
@@ -51,69 +79,62 @@
 
 \setlength\parindent{0pt}
 
-\newenvironment{answer}{}{\\[.3ex]}
+\newenvironment{answer}{}{\medskip}
 \newenvironment{question}[1]{\textbf{#1.} }{}
-\tcolorboxenvironment{question}{enhanced,size=fbox,colback=lighter-blue,boxrule=0pt,sharp corners}
+\tcolorboxenvironment{question}{enhanced,size=normal,colback=lighter-blue,boxrule=0pt,sharp corners}
 
 \newenvironment{qitem}[1]{%
-	\begin{enumerate}\item[(#1)]}{\end{enumerate}}
-\tcolorboxenvironment{qitem}{enhanced,size=fbox,colback=light-orange,boxrule=0pt,sharp corners}
+	\begin{enumerate}\item[(\lr{#1})]}{\end{enumerate}}
+\tcolorboxenvironment{qitem}{enhanced,size=normal,colback=light-orange,boxrule=0pt,sharp corners}
 
 \newtcbox{\code}{on line,fontupper=\ttfamily,size=fbox,colback=light-gray,boxrule=0pt,sharp corners}
 
 \newtcolorbox{titlebox}{enhanced,size=normal,colback=light-gray,colframe=black,sharp corners,shadow={-1mm}{-1mm}{0mm}{black},boxrule=0.6pt,boxsep=2mm}
 \newtcolorbox{hints}[1][]{colback=blue!10!white,colframe=blue!50!black,title=#1,fonttitle=\bfseries\large}
 
-%\tcbset{highlight math style={enhanced jigsaw,size=fbox,colback=light-gray,boxrule=0pt,sharp corners}}
-
-\newcommand{\Institute}{دانشکده مهندسی کامپیوتر}
-\newcommand{\Title}{تمرین اول}
-\newcommand{\DueDate}{۱۴۰۰/۰۱/۱۴}
-\newcommand{\Class}{آزمون نرم‌افزار}
-\newcommand{\Instructor}{دکتر حسن میریان}
-\newcommand{\ClassCode}{40828}
 
 \definecolor{pblue}{rgb}{0.13,0.13,1}
 \definecolor{pgreen}{rgb}{0,0.5,0}
 \definecolor{pred}{rgb}{0.9,0,0}
 \definecolor{pgrey}{rgb}{0.46,0.45,0.48}
 \definecolor{customblue}{RGB}{235,241,245}
-%
-%\newmintedfile[Javacode]{java}{
-%	fontfamily=tt,
-%	fontsize=\footnotesize,
-%	bgcolor=customblue,
-%	formatcom=\setLTR,
-%	linenos=true,
-%	numberblanklines=true,
-%	numbersep=5pt,
-%	escapeinside=||,
-%	gobble=0,
-%	%frame=leftline,
-%	frame=single,
-%	framerule=0.4pt,
-%	framesep=3mm,
-%	funcnamehighlighting=true,
-%	tabsize=3,
-%	obeytabs=false,
-%	mathescape=false,
-%	samepage=false, %with this setting you can force the list to appear on the same page
-%	showspaces=false,
-%	showtabs =false,
-%	texcl=false,
-%	breaklines=true,
-%	baselinestretch=1.1
-%}
+
+\newmintedfile[Javacode]{java}{
+	fontfamily=tt,
+	fontsize=\footnotesize,
+	bgcolor=customblue,
+	formatcom=\setLTR,
+	linenos=true,
+	numberblanklines=true,
+	numbersep=5pt,
+	escapeinside=||,
+	gobble=0,
+	%frame=leftline,
+	frame=single,
+	framerule=0.4pt,
+	framesep=3mm,
+	funcnamehighlighting=true,
+	tabsize=3,
+	obeytabs=false,
+	mathescape=false,
+	samepage=false, %with this setting you can force the list to appear on the same page
+	showspaces=false,
+	showtabs =false,
+	texcl=false,
+	breaklines=true,
+	baselinestretch=1.1
+}
 
 \begin{document}
+	\thispagestyle{plain}
 	\begin{textblock*}{\textwidth}(0pt,-1.5cm)
 		\centering \small
 		بسمه تعالی
 	\end{textblock*}
 	\begin{minipage}[c]{0.7\textwidth}
 		\flushright
-		{\Large\bfseries{\Class} (\ClassCode)}\\
-		{\small استاد: \Instructor}
+		{\Large\bfseries{\Class} (\ClassCode)\ {\scriptsize (نیم‌سال \Semester)}}\\
+		{\small \Instructor}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[c]{0.17\textwidth}
@@ -146,23 +167,30 @@
 چرا که در غیر این صورت در اعدادی مانند \code{II} که یک کاراکتر پشت‌سرهم تکرار شده است خطا ظاهر می‌شود.
 با تغییر در خط ۲۳ و اضافه کردن حالت برابری دو متغیر، مشکل حل خواهد شد. نسخه اصلاح‌شده برنامه در \autoref{code:convert} موجود است.
 
-همچنین تمام رشته‌های شامل ترکیب حروف استفاده شده در اعداد رومی الزاما صحیح نیستند. برای مثال عدد \code{8} تنها به فرم \code{VIII} مورد قبول است و اگر به شکل \code{IIX} نوشته شود صحیح نیست.
-از آنجا که دقیقا در توصیف برنامه گفته نشده است که در این شرایط چه باید کرد می‌توان دو فرض داشت. یک آن که حتما ورودی به فرم اعداد رومی است و ورودی‌ غیر مجازی داده نمی‌شود. در این صورت تنها خطای برنامه، همان خطای نامساوی بیان شده است. دو آن که اگر ورودی به فرم اعداد رومی نباشد آن‌گاه باید برنامه خطای مناسب را در خروجی نشان دهد. در این صورت برنامه یک خطای دیگر نیز دارد چرا که این برنامه‌ برای تمام رشته‌های بدفرم نیز جوابی در سیستم اعداد دهدهی تولید می‌‌کند.
-به منظور جلوگیری از این اتفاق می‌توان با استفاده از عبارت منظم زیر چک کرد که رشته ورودی معتبر است یا خیر. و تنها در صورتی که معتبر بود برنامه به شیوه‌ای که اصلاح شده است ادامه یابد و در غیر این صورت در خروجی خطای مناسب تولید شود.
+نکته‌ای که باید به آن توجه داشت این است که تمام رشته‌های شامل ترکیب حروف استفاده شده در اعداد رومی الزاما صحیح نیستند؛ برای مثال، عدد \code{8} تنها به فرم \code{VIII} مورد قبول است و اگر به شکل \code{IIX} نوشته شود صحیح نیست.
+از آنجا که دقیقا در توصیف برنامه گفته نشده است که در این شرایط چه باید کرد می‌توان دو فرض داشت:
+\begin{enumerate}
+	\item
+حتما ورودی به فرم اعداد رومی است و ورودی‌ غیر مجازی داده نمی‌شود. در این صورت تنها خطای برنامه، همان خطای نامساوی بیان شده است.
+	\item
+اگر ورودی به فرم اعداد رومی نباشد آن‌گاه باید برنامه خطای مناسب را در خروجی نشان دهد. در این صورت برنامه یک خطای دیگر نیز دارد چرا که این برنامه‌ برای تمام رشته‌های بدفرم نیز جوابی در سیستم اعداد دهدهی تولید می‌‌کند.
+\end{enumerate}
+به منظور جلوگیری از این اتفاق، می‌توان با استفاده از عبارت منظم زیر چک کرد که رشته ورودی معتبر است یا خیر. و تنها در صورتی که معتبر بود برنامه به شیوه‌ای که اصلاح شده است ادامه یابد و در غیر این صورت در خروجی، خطای مناسب تولید شود.
+
 تنها در صورتی متغیر \code{valid} برابر \code{1} خواهد شد که رشته مورد نظر با یکی از فرم‌های صحیح عبارت منظم زیر تطبیق یابد:
 \code{\lr{\texttt{boolean valid = word.matches("\^M\{0,4\}(CM|CD|D?C\{0,3\})(XC|XL|L?X\{0,3\})(IX|IV|V?I\}0,3\})\$");}}}
 \end{answer}
-%\begin{listing}[h]
-%\caption{نسخه اصلاح‌شده برنامه تبدیل اعداد رومی به دهدهی}
-%\Javacode{resources/prg.java}
-%\label{code:convert}
-%\end{listing}
+\begin{listing}[h]
+\caption{نسخه اصلاح‌شده برنامه تبدیل اعداد رومی به دهدهی}
+\Javacode{resources/prg.java}
+\label{code:convert}
+\end{listing}
 % ====================================================
 \begin{qitem}{b}
 در صورت امکان مورد آزمونی ارائه دهید که خطا را اجرا نکند.
 \end{qitem}
 \begin{answer}
-از آنجایی محل خطا در خط شماره ۲۳ قرار داد، باید مورد آزمون را به نحوی طراحی کنیم که این خط از کد اجرا نشود. از این رو مورد آزمون هدف، دارای ورودی \code{""} (رشته متنی با طول صفر) و خروجی قابل انتظار \code{0} است. چرا که طول این رشته برابر ۰ می‌باشد و عبارت \code{i<s.length()} در حلقه \code{for} که مقدار اولیه \code{i} برابر \code{0} است ارضا نمی‌شود و این حلقه اجرا نمی‌گردد.
+از آنجایی محل خطا در خط شماره ۲۳ قرار داد، باید مورد آزمون را به نحوی طراحی کنیم که این خط از کد اجرا نشود. از این رو مورد آزمون هدف، دارای ورودی \code{""} (رشته متنی با طول صفر) و خروجی قابل انتظار \code{0} است. چرا که طول این رشته برابر صفر می‌باشد و شرط \code{s.length() < i} در حلقه \code{for} که مقدار اولیه \code{i} برابر \code{0} است ارضا نمی‌شود و این حلقه اجرا نمی‌گردد.
 در بقیه حالات خط شماره ۲۳ که محل خطاست اجرا می‌گردد.
 \end{answer}
 % ====================================================
@@ -185,7 +213,7 @@
 
 همان‌گونه که بحث شد تنها درصورتی که حداقل دو کاراکتر یکسان متوالی وجود داشته باشد، به جای شرط \code{if}، شرط \code{else} اجرا می‌شود. از آنجا که این مورد باعث می‌شود که تنها به غلط از مقدار صحیح کم شود و جای دیگری در برنامه به غلط چیزی اضافه نمی‌شود، پس این حالت نمی‌تواند رخ دهد و نمی‌توان طبیعتا برای آن مورد آزمونی نیز که آن را ارضا کند نوشت.
 
-اما اگر ورودی‌های بدفرم رشته اعداد رومی که شامل کاراکترهای مجاز آن هستند را این تابع به عنوان ورودی بپذیرد ان‌گاه اگر تفسیر رشته‌ای به فرم \code{IIX} (شامل دو کاراکتر تکراری متوالی قبل از یک کاراکتر پرارزش‌تر) را برابر \code{\lr{10-2=8}} در نظر بگیریم (که این کار اشتباه است، و صرفا اینجا مشاهده را گزارش کرده‌ایم). علی رغم اشتباه بودن حالت میانی در حین محاسبه، نتیجه نهایی برابر \code{8} خواهد بود.
+اما اگر ورودی‌های بدفرم رشته اعداد رومی که شامل کاراکترهای مجاز آن هستند را این تابع به عنوان ورودی بپذیرد ان‌گاه اگر تفسیر رشته‌ای به فرم \code{IIX} (شامل دو کاراکتر تکراری متوالی قبل از یک کاراکتر پرارزش‌تر) را برابر \code{8 = 2 - 10} در نظر بگیریم (که این کار اشتباه است، و صرفا اینجا مشاهده را گزارش کرده‌ایم). علی رغم اشتباه بودن حالت میانی در حین محاسبه، نتیجه نهایی برابر \code{8} خواهد بود.
 \end{answer}
 % ====================================================
 \begin{qitem}{e}
@@ -196,98 +224,220 @@
 
 \begin{table}[h]
 	\centering
-\begin{tabular}{c|c}
-	دسترسی‌پذیری & $|S| > 0$\\\hline
-	آلودگی & $\exists i, 0 \leq i < i + 1 < |S| \wedge S[i]=S[i+1]$\\\hline
-	انتشار &
-	$\exists i, 0 \leq i < i + 1 < |S| \wedge S[i]=S[i+1]$
-\end{tabular}
+	\begin{tabular}{c|c}
+		دسترسی‌پذیری & $|S| > 0$\\\hline
+		آلودگی & $\exists i, 0 \leq i < i + 1 < |S| \wedge S[i]=S[i+1]$\\\hline
+		انتشار &
+		$\exists i, 0 \leq i < i + 1 < |S| \wedge S[i]=S[i+1]$
+	\end{tabular}
 \end{table}
 بنابراین، مشخصات آزمون تشخیص دهنده خطای برنامه عبارت است از:
 \begin{align*}
-	&|S| > 0\ \wedge\\
-	&\left(\exists i, j\ 0 \leq i < j < |S| \wedge j - i = 1 \wedge S[i]=S[j]\right) \wedge\\
-	&\left(\exists i, j\ 0 \leq i < j < |S| \wedge j - i = 1 \wedge S[i]=S[j]\right)
+	|S| > 0\ \wedge \left(\exists i, j\ 0 \leq i < j < |S| \wedge j - i = 1 \wedge S[i]=S[j]\right)
 \end{align*}
 \end{answer}
 % ====================================================
 \begin{question}{2}
-برنامه موجود در \autoref{code:q2} کوچکترین و بزرگترین عنصر آرایه‌ای از اعداد صحیح را پیدا می‌کند. پیاده‌سازی این برنامه اشتباه است. با استفاده از روش افراز فضای ورودی، موارد آزمونی را طراحی کنید که خطای برنامه را مشخص کند. رویکرد شما باید حداقل دو خصوصیت مبتنی بر عملکرد و یک خصوصیت مبتنی بر واسط داشته باشد.
+برنامه داده شده، کوچکترین و بزرگترین عنصر آرایه‌ای از اعداد صحیح را پیدا می‌کند. پیاده‌سازی این برنامه اشتباه است. با استفاده از روش افراز فضای ورودی، موارد آزمونی را طراحی کنید که خطای برنامه را مشخص کند. رویکرد شما باید حداقل دو خصوصیت مبتنی بر عملکرد و یک خصوصیت مبتنی بر واسط داشته باشد.
 \end{question}
-%\begin{listing}[h]
-%	\caption{برنامه یافتن بزرگترین و کوچکترین اعداد آرایه}
-	%\Javacode{resources/q2.java}
-%	\label{code:q2}
-%\end{listing}
-خروجی مورد انتظار این برنامه بیشترین و کمترین مقدار آرایه‌ی \code{nums} است. اما اگر ورودی را به نحوی ارائه دهیم که جایگاه بزرگترین داده قبل از جایگاه تمام کوچکترین داده‌ها در لیست باشد، آنگاه مقدار \code{largest} هیچ‌گاه برابر بزرگترین داده نخواهد بود.
+\begin{listing}[h]
+	\caption{برنامه یافتن بزرگترین و کوچکترین اعداد آرایه}
+	\Javacode{resources/q2.java}
+	\label{code:q2}
+\end{listing}
+\begin{answer}
+نسخه اصلاح شده برنامه در \autoref{code:q2} آمده است. خروجی مورد انتظار این برنامه بیشترین و کمترین مقدار آرایه‌ی \code{nums} است. اما اگر ورودی را به نحوی ارائه دهیم که جایگاه بزرگترین داده قبل از جایگاه تمام کوچکترین داده‌ها در لیست باشد، آنگاه مقدار \code{largest} هیچ‌گاه برابر بزرگترین داده نخواهد بود.
 برای مثال لیستی مرتب به صورت نزولی با اعضای \code{\lr{[4, 3, 2, 1]}}
-را در نظر بگیرید، آنگاه خروجی کد به ازای این لیست برای متغیر \code{smallest} مقدار \code{1} و برای متغیر \code{largest} مقدار \code{-2147483648} خواهد بود.
+را در نظر بگیرید، آنگاه خروجی کد به ازای این لیست برای متغیر \code{smallest} مقدار \code{1} و برای متغیر \code{largest} مقدار \code{-‌2147483648} خواهد بود.
 مقدار مورد انتظار برای \code{smallest} همان \code{1} اما برای \code{largest}، مقدار \code{4} است که توسط این تابع بدست نیامده است.
 
-خصوصیت‌های مبتنی بر واسط:
+\subsubsection*{خصوصیات مبتنی بر واسط}
 \begin{enumerate}
-	\item \rl{علامت متغیر :smallest}
-	\begin{enumerate}
-	\item مثبت
-	\item منفی
-	\item صفر
-	\end{enumerate}
-	\item \rl{علامت متغیر :largest}
-	\begin{enumerate}
-	\item مثبت
-	\item منفی
-	\item صفر
-	\end{enumerate}
-	\item \rl{اندازه لیست :nums}
-	\begin{enumerate}
-	\item صفر
-	\item یک 
-	\item بیشتر از یک
-	\end{enumerate}
-	\item \rl{آیا لیست nums به ترتیب صعودی مرتب شده است؟}
-	\begin{enumerate}
-	\item بله
-	\item خیر 
-	\end{enumerate}
-		\item \rl{آیا لیست nums به ترتیب نزولی مرتب شده است؟}
-	\begin{enumerate}
-	\item بله
-	\item خیر 
-	\end{enumerate}
-    \item \rl{ آیا تمامی اعضای num از جنس  int (در بازه مجاز) هستند؟}
-    \begin{enumerate}
-    \item بله
-    \item خیر
-    \end{enumerate}
-    \item \rl{ آیا null است یا خیر؟}
-    \begin{enumerate}
-    \item بله
-    \item خیر
-    \end{enumerate}
-    \item \rl{آیا n نوع int است؟}
-    \begin{enumerate}
-    \item بله
-    \item خیر
-    \end{enumerate}
-    \item \rl{آیا در بازه ی مجاز int است یا خیر؟}
-    \begin{enumerate}
-    \item بله
-    \item خیر
-    \end{enumerate}
+	\item[\lr{\textbf{A}}.]
+علامت متغیر \code{smallest}
+	\begin{tasks}(3)
+		\task[\lr{1}. ] مثبت
+		\task[\lr{2}. ] منفی
+		\task[\lr{3}. ] صفر
+	\end{tasks}
+	\item[\lr{\textbf{B}}.]
+علامت متغیر \code{largest}
+	\begin{tasks}(3)
+		\task[\lr{1}. ] مثبت
+		\task[\lr{2}. ] منفی
+		\task[\lr{3}. ] صفر
+	\end{tasks}
+	\item[\lr{\textbf{C}}.]
+اندازه لیست \code{nums}
+	\begin{tasks}(3)
+		\task[\lr{1}. ] صفر
+		\task[\lr{2}. ] یک 
+		\task[\lr{3}. ] بیشتر از یک
+	\end{tasks}
+	\item[\lr{\textbf{D}}.]
+آیا لیست \code{nums} به ترتیب صعودی مرتب شده است؟
+	\begin{tasks}(2)
+		\task[\lr{1}. ] بله
+		\task[\lr{2}. ] خیر 
+	\end{tasks}
+	\item[\lr{\textbf{E}}.]
+آیا لیست \code{nums} به ترتیب نزولی مرتب شده است؟
+	\begin{tasks}(2)
+		\task[\lr{1}. ] بله
+		\task[\lr{2}. ] خیر 
+	\end{tasks}
+	\item[\lr{\textbf{F}}.]
+آیا تمامی اعضای \code{nums} از جنس  \texttt{int} (در بازه مجاز) هستند؟
+	\begin{tasks}(2)
+		\task[\lr{1}. ] بله
+		\task[\lr{2}. ] خیر
+	\end{tasks}
+	\item[\lr{\textbf{G}}.]
+آیا \code{n} \texttt{null} است یا خیر؟
+	\begin{tasks}(2)
+		\task[\lr{1}. ] بله
+		\task[\lr{2}. ] خیر
+	\end{tasks}
+	\item[\lr{\textbf{H}}.]
+آیا \code{n} نوع \texttt{int} است؟
+	\begin{tasks}(2)
+		\task[\lr{1}. ] بله
+		\task[\lr{2}. ] خیر
+	\end{tasks}
+	\item[\lr{\textbf{I}}.]
+آیا \code{n} در بازه ی مجاز \texttt{int} است یا خیر؟
+	\begin{tasks}(2)
+		\task[\lr{1}. ] بله
+		\task[\lr{2}. ] خیر
+	\end{tasks}
+\end{enumerate}
+\subsubsection*{خصوصیات مبتنی بر عملکرد}
+\begin{enumerate}
+	\item[\lr{\textbf{J}}.]
+آیا بزرگترین عنصر قبل از تمام عنصرهای کوچکتر در لیست ظاهر شده است؟
+	\begin{tasks}(2)
+		\task[\lr{1}. ] بله
+		\task[\lr{2}. ] خیر
+	\end{tasks}
+	\item[\lr{\textbf{K}}.]
+آیا کوچکترین عنصر قبل از تمام عنصرهای بزرگتر در لیست ظاهر شده است؟
+	\begin{tasks}(2)
+		\task[\lr{1}. ] بله
+		\task[\lr{2}. ] خیر
+	\end{tasks}
 \end{enumerate}
 
-خصوصیت مبتنی بر عملکرد:
-\begin{enumerate}
-	\item \rl{آیا بزرگترین عنصر قبل از تمام عنصرهای کوچکتر در لیست ظاهر شده است؟}
-    \begin{enumerate}
-    \item بله
-    \item خیر
-    \end{enumerate}
-	\item \rl{آیا کوچکترین عنصر قبل از تمام عنصرهای بزرگتر در لیست ظاهر شده است؟}
-	    \begin{enumerate}
-    \item بله
-    \item خیر
-    \end{enumerate}
-\end{enumerate}
+\begin{center}
+«محل قرارگیری جدول موارد ‌آزمون»
+\end{center}
+\end{answer}
+\subsection*{بخش عملی}
+\begin{question}{3}
+هدف این بخش آن است که یک برنامه پشته را با استفاده از رویه کاری ایجاد آزمون رانه گشترش داده و مورد آزمون قرار دهید. شما باید برای این برنامه که زبان برنامه‌نویسی جاوا نوشته شده است، به شیوه ایجاد آزمون رانه قابلیت جست‌و‌جو در یک پشته را فراهم کنید. به بیان دقیق‌تر، باید یک تابع با واسط زیر را پیاده‌سازی کنید.
 
+\end{question}
+%\begin{listing}[h]
+%	\caption{واسط تابع جستجو در پشته}
+%	\Javacode{resources/q3.java}
+%	\label{code:q3}
+%\end{listing}
+\begin{answer}
+ویژگی‌های معمول برای پشته به صورت زیر مورد پرسش قرار می‌گیرند:
+\begin{enumerate}
+	\item[\lr{\textbf{A}}.]
+آیا پشته خالی است؟
+	\begin{tasks}(2)
+		\task[\lr{1}. ]
+بله
+		\task[\lr{2}. ]
+خیر
+	\end{tasks}
+	\item[\lr{\textbf{B}}.]
+اندازه پشته چقدر است؟
+	\begin{tasks}(3)
+		\task[\lr{1}. ]
+صفر
+		\task[\lr{2}. ]
+یک
+		\task[\lr{3}. ]
+بیشتر از یک
+	\end{tasks}
+	\item[\lr{\textbf{C}}.]
+آیا پشته شامل عنصرهای \texttt{null} است؟
+	\begin{tasks}(2)
+		\task[\lr{1}. ]
+بله
+		\task[\lr{2}. ]
+خیر
+	\end{tasks}
+\end{enumerate}
+همچنین ویژگی‌های مربوط به عنصر که قصد جستجوی آن را داریم به زیر هستند:
+\begin{enumerate}[label=.\Alph*]
+	\item[\lr{\textbf{D}}.]
+آیا عنصر \code{i}، \texttt{null} است؟
+	\begin{tasks}(2)
+		\task[\lr{1}. ]
+بله
+		\task[\lr{2}. ]
+خیر
+	\end{tasks}
+\end{enumerate}
+و همچنین سولاتی که پیرامون رابطه پشته و عنصری که قصد جستجوی آن در پشته را داریم قابل طرح هستند، نظیر:
+\begin{enumerate}[label=.\Alph*]
+	\item[\lr{\textbf{E}}.]
+آیا عنصر \code{i} در پشته وجود دارد؟
+	\begin{tasks}(2)
+		\task[\lr{1}. ]
+بله
+		\task[\lr{2}. ]
+خیر
+	\end{tasks}
+	\item[\lr{\textbf{F}}.]
+آیا عنصر \code{i}، المان اول در پشته است؟
+	\begin{tasks}(2)
+		\task[\lr{1}. ]
+بله
+		\task[\lr{2}. ]
+خیر
+	\end{tasks}
+	\item[\lr{\textbf{G}}.]
+آیا عنصر \code{i}، المان آخر در پشته است؟
+	\begin{tasks}(2)
+		\task[\lr{1}. ]
+بله
+		\task[\lr{2}. ]
+خیر
+	\end{tasks}
+\end{enumerate}
+حال با توجه به خصوصیات مطرح شده و افراز بلاک‌های انجام شده، به روش \lr{EC}%
+\LTRfootnote{Each Choice}
+اقدام به ساخت موارد آزمون می‌کنیم که لیست این موارد در \autoref{tbl:ec-test-cases} آورده شده است. در این روش کافی است از هر بلاک حداقل یک مورد در آزمون استفاده شود.
+
+	\begin{table}[h]
+		\centering
+		\caption{موارد آزمون ساخته شده به روش \lr{EC}}
+		\label{tbl:ec-test-cases}
+		\begin{latin}
+		\begin{tabular}{l|c|c|c|c|c|c|c|c|}
+			\cline{2-9}
+			& \textbf{TC 1} & \textbf{TC 2} & \textbf{TC 3} & \textbf{TC 4} & \textbf{TC 5} & \textbf{TC 6} & \textbf{TC 7} & \textbf{TC 8} \\ \hline
+			\multicolumn{1}{|l|}{\textbf{A}} & A2         & A2         & A2         & A1         & A2         & A2         & A2         & A2         \\ \hline
+			\multicolumn{1}{|l|}{\textbf{B}} & B3         & B3         & B3         & B1         & B2         & B3         & B3         & B3         \\ \hline
+			\multicolumn{1}{|l|}{\textbf{C}} & C2         & C2         & C2         & C2         & C2         & C1         & C2         & C2         \\ \hline
+			\multicolumn{1}{|l|}{\textbf{D}} & D2         & D2         & D2         & D2         & D2         & D2         & D1         & D2         \\ \hline
+			\multicolumn{1}{|l|}{\textbf{E}} & E1         & E1         & E2         & E2         & E1         & E1         & E2         & E1         \\ \hline
+			\multicolumn{1}{|l|}{\textbf{F}} & F1         & F2         & F2         & F2         & F1         & F2         & F2         & F2         \\ \hline
+			\multicolumn{1}{|l|}{\textbf{G}} & G2         & G1         & G2         & G2         & G1         & G2         & G2         & G2         \\ \hline
+		\end{tabular}
+	\end{latin}
+	\end{table}
+
+توجه کنید که با توجه به اینکه زبان جاوا به صورت \lr{strict-type} است، امکان \lr{push} کردن عنصر \lr{null} به پشته وجود ندارد و همچنین در صورت ارسال آن به تابع \lr{search}، با خطای \lr{compile} روبرو خواهیم شد. به همین دلیل، موارد آزمون ۶ و ۷ در عمل پیاده‌سازی نمی‌شوند. \autoref{fig:test-cases} نتایج اعمال موارد آزمون را توسط چارچوب \lr{JUnit} نمایش می‌دهد.
+
+\begin{figure}
+	\caption{نتایج موارد آزمون اعمال شده}
+	\includegraphics[width=\textwidth]{test-status-q3}
+	\label{fig:test-cases}
+\end{figure}
+\end{answer}
 \end{document}

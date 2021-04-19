@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k+kd}{public} \PYG{k+kd}{class} \PYG{n+nc}{NumFinder} \PYG{p}{\PYGZob{}}
+	\PYG{k+kd}{private} \PYG{k+kt}{int} \PYG{n}{smallest} \PYG{o}{=} \PYG{n}{Integer}\PYG{p}{.}\PYG{n+na}{MAX\PYGZus{}VALUE}\PYG{p}{;}
+	\PYG{k+kd}{private} \PYG{k+kt}{int} \PYG{n}{largest} \PYG{o}{=} \PYG{n}{Integer}\PYG{p}{.}\PYG{n+na}{MIN\PYGZus{}VALUE}\PYG{p}{;}
+
+	\PYG{k+kd}{public} \PYG{k+kt}{void} \PYG{n+nf}{find}\PYG{p}{(}\PYG{k+kt}{int}\PYG{o}{[}\PYG{o}{]} \PYG{n}{nums}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n} \PYG{p}{:} \PYG{n}{nums}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZlt{}} \PYG{n}{smallest}\PYG{p}{)}
+				\PYG{n}{smallest} \PYG{o}{=} \PYG{n}{n}\PYG{p}{;}
+			\PYG{esc}{\colorbox{green}{if}} \PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZgt{}} \PYG{n}{largest}\PYG{p}{)}
+				\PYG{n}{largest} \PYG{o}{=} \PYG{n}{n}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{k+kd}{public} \PYG{k+kt}{int} \PYG{n+nf}{getSmallest}\PYG{p}{(}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{smallest}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{k+kd}{public} \PYG{k+kt}{int} \PYG{n+nf}{getLargest}\PYG{p}{(}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{largest}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

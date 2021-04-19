@@ -330,7 +330,7 @@
 \end{enumerate}
 حال با توجه به خصوصیات مطرح شده و افراز بلاک‌های انجام شده، به روش \lr{BCC}%
 \LTRfootnote{Bace Choice Coverage}
-اقدام به ساخت موارد آزمون می‌کنیم که لیست این موارد در \autoref{tbl:bcc-test-cases} آورده شده است. در این روش کافی است یک پایه در نظر بگیریم و هر بار یکی از خصوصیت‌ها تغییر پیدا کند.
+اقدام به ساخت نیاز و موارد آزمون می‌کنیم که لیست این نیازها در \autoref{tbl:bcc-test-cases} آورده شده است. همچنین موارد آزمون نیز در جدول \autoref{tbl:bcc-test-cases-2} نمایش داده شده است. در این روش کافی است یک پایه در نظر بگیریم و هر بار یکی از خصوصیت‌ها تغییر پیدا کند.
 
 	\begin{table}[h]
 		\centering
@@ -354,6 +354,33 @@
 	\end{tabular}
 	\end{latin}
 	\end{table}
+	\begin{table}[h]
+		\centering
+		\caption{موارد آزمون ساخته شده به روش \lr{BCC}}
+		\label{tbl:bcc-test-cases-2}
+		\begin{latin}
+\begin{tabular}{c|c|c|c|}
+\cline{2-4}
+                                    & \textbf{Input}              & \textbf{Expected Smallest}   & \textbf{Expected Largest}  \\ \hline
+\multicolumn{1}{|c|}{\textbf{BASE}} & {[}3,6,2,1,4{]}             & 1                            & 6                          \\ \hline
+\multicolumn{1}{|c|}{\textbf{TC1}}  & {[}3,6,2,-1,4{]}            & -1                           & 6                          \\ \hline
+\multicolumn{1}{|c|}{\textbf{TC2}}  & {[}3,6,2,0,4{]}             & 0                            & 6                          \\ \hline
+\multicolumn{1}{|c|}{\textbf{TC3}}  & {[}-3,-1,-7,-2{]}           & -7                           & -1                         \\ \hline
+\multicolumn{1}{|c|}{\textbf{TC4}}  & {[}-3,0,-7,-2{]}            & -7                           & -1                         \\ \hline
+\multicolumn{1}{|c|}{\textbf{TC5}}  & \multicolumn{3}{c|}{invalid, against constraints F ...}                                 \\ \hline
+\multicolumn{1}{|c|}{\textbf{TC6}}  & \multicolumn{3}{c|}{invalid, against constraints J and K}                               \\ \hline
+\multicolumn{1}{|c|}{\textbf{TC7}}  & \multicolumn{3}{c|}{invalid, against constraint K}                                      \\ \hline
+\multicolumn{1}{|c|}{\textbf{TC8}}  & \multicolumn{3}{c|}{invalid, against constraint J}                                      \\ \hline
+\multicolumn{1}{|c|}{\textbf{TC9}}  & {[}3,MaxInt + 1, 4,5,1,2{]} & \multicolumn{2}{c|}{program should notify user and exit.} \\ \hline
+\multicolumn{1}{|c|}{\textbf{TC10}} & null                        & \multicolumn{2}{c|}{program should notify user and exit.} \\ \hline
+\multicolumn{1}{|c|}{\textbf{TC11}} & {[}2.1,6.2,2.5,1.0,3.4{]}   & \multicolumn{2}{c|}{program should notify user and exit.} \\ \hline
+\multicolumn{1}{|c|}{\textbf{TC12}} & {[}3,MaxInt + 1, 4,5,1,2{]} & \multicolumn{2}{c|}{program should notify user and exit.} \\ \hline
+\multicolumn{1}{|c|}{\textbf{TC13}} & {[}8,3,6,2,1,4{]}           & 1                            & 8                          \\ \hline
+\multicolumn{1}{|c|}{\textbf{TC14}} & {[}1,3,6,2,4{]}             & 1                            & 6                          \\ \hline
+	\end{tabular}
+	\end{latin}
+	\end{table}
+مورد آزمون شماره ی ۱۳ به اشتباه ۶ را به عنوان largest اعلام می کند که خطای برنامه را نشان می دهد و همچنین سایر موارد آزمون ۹ ، ۱۰ ، ۱۱ و ۱۲ نیز از برنامه توقع خروجی مناسب می رود تا خطای ورودی را به اطلاع کاربر برساند اما برنامه به درسی خروجی نمی دهد.
 \end{answer}
 \subsection*{بخش عملی}
 \begin{question}{3}
@@ -373,7 +400,7 @@
 	\item
 همه ی تست ها را اجرا می کنیم. آیا تست جدید با شکست رو به رو می شود؟
 	\item
-مقدار کد می نویسیم تا تست شکست خورده را با موفقیت بگذراند.
+مقداری کد می نویسیم تا تست شکست خورده را با موفقیت بگذراند.
 	\item
 تست ها را مجددا اجرا می کنیم.
 	\item
@@ -452,11 +479,11 @@
 \end{enumerate}
 حال با توجه به خصوصیات مطرح شده و افراز بلاک‌های انجام شده، به روش \lr{EC}%
 \LTRfootnote{Each Choice}
-اقدام به ساخت موارد آزمون می‌کنیم که لیست این موارد در \autoref{tbl:ec-test-cases} آورده شده است. در این روش کافی است از هر بلاک حداقل یک مورد در آزمون استفاده شود.
+اقدام به ساخت نیاز آزمون می‌کنیم که لیست این نیازها در \autoref{tbl:ec-test-cases} آورده شده است. در این روش کافی است از هر بلاک حداقل یک مورد در آزمون استفاده شود.
 
 	\begin{table}[h]
 		\centering
-		\caption{موارد آزمون ساخته شده به روش \lr{EC}}
+		\caption{نیاز آزمون ساخته شده به روش \lr{EC}}
 		\label{tbl:ec-test-cases}
 		\begin{latin}
 		\begin{tabular}{l|c|c|c|c|c|c|c|c|}

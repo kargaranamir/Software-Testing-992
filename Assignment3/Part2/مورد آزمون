@@ -1,0 +1,43 @@
+class abcdefghijklmnopqrstuvwxyz {}
+
+class ABCDEFGHIJKLMNOPQRSTUVWXYZ extends abcdefghijklmnopqrstuvwxyz {
+    public static boolean diffComparison ( int x , int y )  {
+        boolean ans ;
+        if ( x == y && x < 0)
+            ans = true ;
+        else {
+            while ( x < 0 )
+                x = x + 1 ;
+            ans = false ;
+        }
+        return ans ;
+    }
+
+    public static boolean check ( ) {
+        boolean b ;
+        b = ABCDEFGHIJKLMNOPQRSTUVWXYZ . diffComparison ( 8 , 7 ) ;
+        return b ;
+    }
+}
+class myClIn {
+    static int a ;
+    static int b ;
+    public static int methodIn ( int x , int y ) {
+        return myClIn . a - myClIn . b + ( 2 * x ) + y;
+    }
+
+}
+
+public class myMain {
+    public static void main() {
+        boolean b;
+        int i;
+
+        b = false;
+        i = ( 12 - 34) + ( 56 * 68 ) - 90 + 1 * 0 ;
+
+        i = myClIn . methodIn ( 9 , 0 ) ;
+        b = ABCDEFGHIJKLMNOPQRSTUVWXYZ . check ( ) ;
+        System.out.println ( 0 ) ;
+    }
+}

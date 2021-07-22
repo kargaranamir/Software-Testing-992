@@ -1,0 +1,29 @@
+[1] Goal -> Source EOF
+[2] Source -> ClassDeclarations MainClass
+[3] MainClass -> "class" Identifier "{" "public" "static" "void" "main()" "{" VarDeclarations Statements "}" "}"
+[4-5] ClassDeclarations -> ClassDeclaration ClassDeclarations | eps
+[6] ClassDeclaration -> "class" Identifier Extension "{" FieldDeclarations MethodDeclarations "}"
+[7-8] Extension -> "extends" Identifier | eps
+[9-10] FieldDeclarations -> FieldDeclaration FieldDeclarations | eps
+[11] FieldDeclaration -> "static" Type Identifier ";"
+[12-13] VarDeclarations -> VarDeclaration VarDeclarations | eps
+[14] VarDeclaration -> Type Identifier ";"
+[15-16] MethodDeclarations -> MethodDeclaration MethodDeclarations | eps
+[17] MethodDeclaration -> "public" "static" Type Identifier "(" Parameters ")" "{" VarDeclarations Statements "return" GenExpression ";" "}"
+[18-19] Parameters -> Type Identifier Parameter | eps
+[20-21] Parameter -> "," Type Identifier Parameter | eps
+[22-23] Type -> "boolean" | "int"
+[24-25] Statements -> Statements Statement | eps
+[26-30] Statement -> "{" Statements "}" | "if" "(" GenExpression ")" Statement "else" Statement | "while" "(" GenExpression ")" Statement | "System.out.println" "(" GenExpression ")" ";" | Identifier "=" GenExpression ";"
+[31-32] GenExpression -> Expression | RelExpression
+[33-35] Expression -> Expression "+" Term | Expression "-" Term | Term
+[36-37] Term -> Term "*" Factor | Factor
+[38-44] Factor -> "(" Expression ")" | Identifier | Identifier "." Identifier | Identifier "." Identifier "(" Arguments ")" | "true" | "false" | Integer
+[45-46] RelExpression -> RelExpression "&&" RelTerm | RelTerm
+[47-48] RelTerm -> Expression "==" Expression | Expression "<" Expression
+[49-50] Arguments -> GenExpression Argument | eps
+[51-52] Argument -> "," GenExpression Argument | eps
+[53-54] Identifier -> consonant Identifier| eps
+[55-56] Integer -> digit Integer | eps 
+[57-67] digit -> ["0"-"9"]
+[68-120] consonant -> ["a-"Z"]
